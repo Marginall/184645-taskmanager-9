@@ -1,5 +1,6 @@
 'use strict';
-const container = document.querySelector('.main');
+
+const container = document.querySelector(`.main`);
 
 const renderMenu = () => {
   return `
@@ -34,7 +35,7 @@ const renderMenu = () => {
         >
       </section>
     </section>
-  `;
+  `
 }
 
 const renderSearch = () => {
