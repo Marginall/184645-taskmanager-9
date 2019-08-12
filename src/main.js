@@ -35,7 +35,7 @@ const renderMenu = () => {
         >
       </section>
     </section>
-  `
+  `;
 }
 
 const renderSearch = () => {
@@ -50,7 +50,7 @@ const renderSearch = () => {
       <label class="visually-hidden" for="search__input">Search</label>
     </section>
   `;
-}
+};
 
 const renderFilter = () => {
   return `
@@ -123,7 +123,7 @@ const renderFilter = () => {
       >
     </section>
   `;
-}
+};
 
 const renderCard = () => {
   return `
@@ -184,7 +184,7 @@ const renderCard = () => {
       </div>
     </article>
   `;
-}
+};
 
 const renderForm = () => {
   return `
@@ -456,13 +456,13 @@ const renderForm = () => {
       </form>
     </article>
   `;
-}
+};
 
 const renderLoadMore = () => {
   return `
     <button class="load-more" type="button">load more</button>
   `;
-}
+};
 
 let components = {
   menu: renderMenu(),
@@ -488,6 +488,6 @@ const createComponents = (container) => {
       </section>
       ${components.loadMore}
   `;
-}
+};
 
 createComponents(container);
