@@ -495,5 +495,5 @@ renderComponents(main, components.board, `beforeend`);
 
 const board = main.querySelector(`.board__tasks`);
 
-new Array(3).fill(``).forEach(() => renderComponents (board, components.card, `afterbegin`));
+new Array(3).fill(``).forEach(() => renderComponents(board, components.card, `afterbegin`));
 renderComponents(board, components.form, `afterbegin`);
