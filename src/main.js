@@ -1,39 +1,34 @@
 'use strict';
 
-const main = document.querySelector(`.main`);
-
 const renderMenu = () => {
   return `
-      <section class="main__control control container">
-      <h1 class="control__title">TASKMANAGER</h1>
-      <section class="control__btn-wrap">
-        <input
-          type="radio"
-          name="control"
-          id="control__new-task"
-          class="control__input visually-hidden"
-        />
-        <label for="control__new-task" class="control__label control__label--new-task"
-          >+ ADD NEW TASK</label
-        >
-        <input
-          type="radio"
-          name="control"
-          id="control__task"
-          class="control__input visually-hidden"
-          checked
-        />
-        <label for="control__task" class="control__label">TASKS</label>
-        <input
-          type="radio"
-          name="control"
-          id="control__statistic"
-          class="control__input visually-hidden"
-        />
-        <label for="control__statistic" class="control__label"
-          >STATISTICS</label
-        >
-      </section>
+    <section class="control__btn-wrap">
+      <input
+        type="radio"
+        name="control"
+        id="control__new-task"
+        class="control__input visually-hidden"
+      />
+      <label for="control__new-task" class="control__label control__label--new-task"
+        >+ ADD NEW TASK</label
+      >
+      <input
+        type="radio"
+        name="control"
+        id="control__task"
+        class="control__input visually-hidden"
+        checked
+      />
+      <label for="control__task" class="control__label">TASKS</label>
+      <input
+        type="radio"
+        name="control"
+        id="control__statistic"
+        class="control__input visually-hidden"
+      />
+      <label for="control__statistic" class="control__label"
+        >STATISTICS</label
+      >
     </section>
   `;
 };
@@ -464,30 +459,41 @@ const renderLoadMore = () => {
   `;
 };
 
+const renderBoard = () => {
+  return `<section class="board container">
+    <div class="board__filter-list">
+      <a href="#" class="board__filter">SORT BY DEFAULT</a>
+      <a href="#" class="board__filter">SORT BY DATE up</a>
+      <a href="#" class="board__filter">SORT BY DATE down</a>
+    </div>
+    <div class="board__tasks">
+    </div>
+  </section>`;
+};
+
 let components = {
   menu: renderMenu(),
   search: renderSearch(),
   filter: renderFilter(),
+  board: renderBoard(),
   card: renderCard(),
   form: renderForm(),
   loadMore: renderLoadMore()
 };
 
-const createComponents = (container) => {
-  container.innerHTML = `
-      ${components.menu} ${components.search} ${components.filter} 
-      <section class="board container">
-        <div class="board__filter-list">
-          <a href="#" class="board__filter">SORT BY DEFAULT</a>
-          <a href="#" class="board__filter">SORT BY DATE up</a>
-          <a href="#" class="board__filter">SORT BY DATE down</a>
-        </div>
-        <div class="board__tasks">
-          ${components.form} ${components.card} ${components.card} ${components.card}
-        </div>
-      </section>
-      ${components.loadMore}
-  `;
+const renderComponents = (container, component, place) => {
+  container.insertAdjacentHTML(place, component);
 };
 
-createComponents(main);
+const main = document.querySelector(`.main`);
+const menuControl = main.querySelector(`.control`);
+
+renderComponents(menuControl, components.menu, `beforeend`);
+renderComponents(menuControl, components.search, `afterend`);
+renderComponents(main, components.filter, `beforeend`);
+renderComponents(main, components.board, `beforeend`);
+
+const board = main.querySelector(`.board__tasks`);
+
+new Array(3).fill(``).forEach(() => renderComponents (board, components.card, `afterbegin`));
+renderComponents(board, components.form, `afterbegin`);
