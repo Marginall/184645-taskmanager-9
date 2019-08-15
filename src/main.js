@@ -1,5 +1,3 @@
-'use strict';
-
 const renderMenu = () => {
   return `
     <section class="control__btn-wrap">
